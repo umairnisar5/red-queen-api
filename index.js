@@ -73,3 +73,23 @@ var adjustBackgroundPlayback = function() {
   }   
 }
 adjustBackgroundPlayback();
+
+
+/* If Alice and the Red Queen are running at a speed of 1, the background doesn't move. */
+/* But if they fall under 1, the background slides backwards */
+setInterval( function() {
+    /* Set decay */
+    if (redQueen_alice.playbackRate > .4) {
+      redQueen_alice.playbackRate *= .9;    
+    } 
+    adjustBackgroundPlayback();
+  }, 3000);
+  
+  var goFaster = function() {
+    /* But you can speed them up by giving the screen a click or a tap. */
+    redQueen_alice.playbackRate *= 1.1;
+    adjustBackgroundPlayback();
+  }
+  
+  document.addEventListener("click", goFaster);
+  document.addEventListener("touchstart", goFaster);
