@@ -50,4 +50,26 @@ var foreground2Movement = foreground2.animate(
       playbackRate: 1,
       iterations: Infinity
     });
+
     
+/* Alice tires so easily! 
+  Every so many seconds, reduce their playback rate so they slow a little. 
+*/
+var sceneries = [foreground1Movement, foreground2Movement, background1Movement, background2Movement];
+
+var adjustBackgroundPlayback = function() {
+  if (redQueen_alice.playbackRate < .8) {
+    sceneries.forEach(function(anim) {
+      anim.playbackRate = redQueen_alice.playbackRate/2 * -1;
+    });
+  } else if (redQueen_alice.playbackRate > 1.2) {
+    sceneries.forEach(function(anim) {
+      anim.playbackRate = redQueen_alice.playbackRate/2;
+    });
+  } else {
+    sceneries.forEach(function(anim) {
+      anim.playbackRate = 0;    
+    });
+  }   
+}
+adjustBackgroundPlayback();
